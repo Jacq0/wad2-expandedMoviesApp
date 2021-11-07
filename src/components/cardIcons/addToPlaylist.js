@@ -8,6 +8,7 @@ const AddToPlaylistIcon = ({ movie }) => {
 
   const handleAddToPlaylist = (e) => {
     e.preventDefault();
+    context.addToWatchlist(movie);
     //context.addToFavorites(movie);
   }; //unneeded for now
   
