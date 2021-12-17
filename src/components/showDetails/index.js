@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
+import CalendarIcon from "@material-ui/icons/DateRange";
+import ClipboardIcon from "@material-ui/icons/Movie";
 import MonetizationIcon from "@material-ui/icons/MonetizationOn";
 import StarRate from "@material-ui/icons/StarRate";
 import NavigationIcon from "@material-ui/icons/Navigation";
@@ -55,8 +57,8 @@ const ShowDetails = ({ show }) => {  // Don't miss this!
         ))}
       </Paper>
       <Paper component="ul" className={classes.root}>
-        <Chip icon={<AccessTimeIcon />} label={`${show.number_of_seasons} Seasons.`} />
-        
+        <Chip icon={<CalendarIcon />} label={`${show.number_of_seasons} Seasons`} />
+        <Chip icon={<ClipboardIcon />} label={`${show.number_of_episodes} Episodes`} />
         <Chip
           icon={<StarRate />}
           label={`${show.vote_average} (${show.vote_count})`}
@@ -75,6 +77,15 @@ const ShowDetails = ({ show }) => {  // Don't miss this!
     </li>   
     ))}
       </Paper>
+      
+      {show.seasons.map((season) => (//construct list of seasons and deatils
+    <li key={season.name}>
+        <Paper component="ul" className={classes.root}>
+            <Chip label={season.name} className={classes.chip} />
+            <Chip label={`Began: ${season.air_date}`} className={classes.chip} />
+            <Chip label={`Episodes:${season.episode_count}`} className={classes.chip} /></Paper>
+    </li>   
+    ))}
       <Fab
         color="secondary"
         variant="extended"
