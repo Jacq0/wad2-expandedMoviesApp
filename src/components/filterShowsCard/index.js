@@ -1,4 +1,4 @@
-import React from "react";  // useState/useEffect redundant 
+import React from "react";  
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -10,7 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import img from '../../images/cinema.jpg'
+import img from '../../images/jerma.webp'
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
@@ -18,7 +18,7 @@ import Spinner from '../spinner'
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    backgroundColor: "rgb(204, 204, 0)",
+    backgroundColor: "rgb(0, 204, 204)",
   },
   media: { height: 470 },
 
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FilterMoviesCard(props) {
+export default function FilterShowsCard(props) {
   const classes = useStyles();
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
 
@@ -40,21 +40,8 @@ export default function FilterMoviesCard(props) {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
-
-  //the const cannot be modified, except when you use an array modify function ffs
-  //const genres = data.genres;
-  //const genreListLength = genres.length;
-
-  /*if(genreListLength < genreListLength+1)
-  {
-    genres.unshift({ id: "0", name: "All" });
-  }*/
-
-  let genres = []
-  genres = data.genres;
-  let genreListLength = genres.length;
-
-  genres.unshift({id: "0", name: "All"})
+  const genres = data.genres;
+  genres.unshift({ id: "0", name: "All" });
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
@@ -75,7 +62,7 @@ export default function FilterMoviesCard(props) {
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
-           Filter Movies.
+           Filter TV Shows.
         </Typography>
         <TextField
       className={classes.formControl}
@@ -111,6 +98,4 @@ export default function FilterMoviesCard(props) {
       />
     </Card>
   );
-
-  
 }
