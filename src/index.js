@@ -14,6 +14,7 @@ import AddMovieReviewPage from './pages/addMovieReviewPage'
 import NetworksPage from "./pages/networksPage";
 import TVPage from "./pages/tvPage";
 import TVDetailsPage from "./pages/tvDetailsPage";
+import AboutPage from "./pages/aboutPage"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,6 +39,8 @@ const App = () => {
           <Route path="/reviews/:id" component={MovieReviewPage} />
           <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
           <Route path="/movies/:id" component={MoviePage} />
+
+          <Route path="/about" component={AboutPage} />
           <Route path="/networks" component={NetworksPage} />
           <Route exact path="/shows" component={TVPage} />
           <Route path="/shows/:id" component={TVDetailsPage} />
